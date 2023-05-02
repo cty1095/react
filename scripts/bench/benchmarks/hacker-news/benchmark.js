@@ -5,14 +5,16 @@
 
   function timeAge(time) {
     const now = new Date().getTime() / 1000;
-    const minutes = (now - time) / 60;
+    const seconds = now - time;
 
-    if (minutes < 60) {
-      return Math.round(minutes) + ' minutes ago';
+    if (seconds < 60) {
+      return Math.round(seconds) + ' seconds ago';
+    } else if (seconds < 3600) {
+      return Math.round(seconds / 60) + ' minutes ago';
+    } else {
+      return Math.round(seconds / 3600) + ' hours ago';
     }
-    return Math.round(minutes / 60) + ' hours ago';
   }
-
   function getHostUrl(url) {
     return (url + '')
       .replace('https://', '')
